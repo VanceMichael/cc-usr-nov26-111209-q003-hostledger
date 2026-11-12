@@ -1,0 +1,12 @@
+{
+  "/file": {
+    "file": "sample.hex",
+    "encoding": "hex",
+    "type": "application/octet-stream"
+  },
+  "/redelivery": {
+    "file": "redelivery.hex",
+    "encoding": "hex",
+    "type": "application/octet-stream"
+  }
+}
