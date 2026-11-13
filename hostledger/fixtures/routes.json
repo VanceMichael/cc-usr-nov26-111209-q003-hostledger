@@ -8,5 +8,25 @@
     "file": "redelivery.hex",
     "encoding": "hex",
     "type": "application/octet-stream"
+  },
+  "/layout02": {
+    "file": "layout02.hex",
+    "encoding": "hex",
+    "type": "application/octet-stream"
+  },
+  "/control-bad": {
+    "file": "control-bad.hex",
+    "encoding": "hex",
+    "type": "application/octet-stream"
+  },
+  "/bad-decimal": {
+    "file": "bad-decimal.hex",
+    "encoding": "hex",
+    "type": "application/octet-stream"
+  },
+  "/unknown": {
+    "file": "unknown.hex",
+    "encoding": "hex",
+    "type": "application/octet-stream"
   }
 }

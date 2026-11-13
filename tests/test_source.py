@@ -4,6 +4,7 @@ import threading
 import unittest
 import urllib.parse
 import urllib.request
+from pathlib import Path
 
 from hostledger.source_server import FixtureServer
 from hostledger.transport import fetch
@@ -35,3 +36,17 @@ class SourceTests(unittest.TestCase):
 
     def test_redelivery_has_different_bytes(self):
         self.assertNotEqual(self.get('/file')[2], self.get('/redelivery')[2])
+
+    def test_receive_over_http_requires_200(self):
+        from hostledger.ledger import Ledger
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            ledger = Ledger(Path(directory) / 'l.sqlite3', Path(directory) / 'objects')
+            try:
+                status, content_type, body = self.get('/missing')
+                capture = ledger.save(self.base + '/missing', status, content_type, body)
+                with self.assertRaises(ValueError):
+                    ledger.receive(capture)
+                self.assertEqual(ledger.receipts(), [])
+            finally:
+                ledger.close()
